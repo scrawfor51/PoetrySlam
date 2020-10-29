@@ -1,25 +1,38 @@
+import coherence
 from poem import Poem
 import random
 from text_to_speech import read_text_doc
 
 
-def get_starter_recipes():
+def get_starter_poems():
     """
-    Creates a database of all the starting poems whose urls are listed in the ./urls file.
+    Creates a database of all the starting poems whose poem_urls are listed in the ./poem_urls file.
 
     :return: An array consisting of all the poems in the starting population.
     """
 
     poem_list = []  # A list of the various starting best poems
 
-    file = open("./urls")
+    file = open("poem_urls")
 
     for line in file:
         p = Poem(str(line))
-        poem_list += p
+        poem_list.append(p)
 
     return poem_list
 
+def become_coherent():
+    """
+    Creates a database of word frequencies based off of the
+
+    :return:
+    """
+
+    file = open("prose_urls")
+
+    for line in file:
+
+        coherence.gather_data(line)
 
 def poem_select(poems):
     """
@@ -36,16 +49,16 @@ def poem_select(poems):
 def poem_characteristics(poem_1, poem_2):
 
     poem_format = ""  # A template for the result poem to follow
-
+    population = set(poem_1, poem_2)
+    random.choices(population)
 
     return poem_format
 
 
 def main():
 
-    starter_poems = get_starter_recipes()  # All the starter poems as an array
+    starter_poems = get_starter_poems()  # All the starter poems as an array
 
-    read_text_doc()
 
 
 if __name__ == '__main__':
